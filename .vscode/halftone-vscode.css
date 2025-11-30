@@ -1,0 +1,54 @@
+/* Halftone background for VS Code (for use with Custom CSS & JS Loader) */
+
+:root {
+  /* use the same radial-gradient grain effect as the site — low opacity dots */
+  --vscode-halftone: radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px), radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px);
+}
+
+/* apply the subtle halftone to the main workbench areas */
+.monaco-workbench,
+.part.editor > .content,
+.side-bar,
+.activitybar,
+.monaco-panel,
+.parts-sash,
+.viewlets,
+.titlebar {
+  background-color: #F4F4F4 !important;
+  background-image: var(--vscode-halftone) !important;
+  background-repeat: repeat !important;
+  background-size: 3px 3px !important;
+}
+
+/* keep editor text areas readable: do not override Monaco's editor pane */
+.monaco-editor .view-lines,
+.monaco-editor .margin {
+  background: transparent !important;
+}
+
+/* soft protective overlay for panels so UI widgets remain crisp */
+.editor .monaco-editor,
+.monaco-editor .lines-content,
+.editor-group-container .editor-group {
+  background-color: rgba(255,255,255,0.96) !important;
+}
+
+/* ensure inputs and lists keep high contrast */
+.input, .list, .monaco-list .monaco-list-rows {
+  background: rgba(255,255,255,0.98) !important;
+}
+
+/* optionally disable on dark theme; if VS Code sets a .vscode-dark body class, override here */
+[data-theme*="dark"], .vscode-dark {
+  .monaco-workbench,
+  .part.editor > .content,
+  .side-bar,
+  .activitybar {
+    background-image: none !important;
+  }
+}
+
+/* Notes:
+   - After installing a custom CSS extension, point it at this file and enable/reload as instructed.
+   - VS Code updates often require re-applying the custom CSS enable step.
+*/
