@@ -1,19 +1,24 @@
 import { motion } from "motion/react";
 import { Download } from "lucide-react";
 import { useState, useEffect } from "react";
+import cvFile from "../assets/mohammed_hashil_cv.pdf";
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -29,6 +34,7 @@ export function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
+          
           {/* Logo / Title */}
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -55,7 +61,7 @@ export function Navigation() {
           </div>
 
           {/* Download CV Button */}
-          <a href="/mohammed_hashil_cv.pdf" download>
+          <a href={cvFile} download>
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
